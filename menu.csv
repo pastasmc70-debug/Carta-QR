@@ -1,0 +1,14 @@
+categoria,producto,descripcion,precio,precio_anterior,imagen,disponible,etiqueta,icono
+Cafetería,Café Clásico,"El de siempre, intenso y bien caliente.",2000,,cafe-clasico.jpg,SI,,☕
+Cafetería,Capuccino,"Espuma perfecta, sabor único.",2500,,capuccino.jpg,SI,Nuevo,
+Cafetería,Café Helado,Refrescante y delicioso.,2800,,cafe-helado.jpg,SI,,
+Desayunos,Medialuna Simple,"Croissant clásico, suave y esponjoso.",1500,,medialuna.jpg,SI,,
+Desayunos,Tostado Clásico,Jamón y queso en pan tostado.,"3.500",,tostado.jpg,SI,,
+Desayunos,Desayuno Completo,Medialuna + café o jugo.,"$ 4.500",,desayuno-completo.jpg,SI,,
+Postres,Cheesecake,"Suave, cremoso, con frutos rojos.",4000,,cheesecake.jpg,SI,,
+Postres,Brownie,Chocolate puro.,3500,,brownie.jpg,SI,,
+Postres,Cookie,Con chips de chocolate.,1500,2000,cookie.jpg,NO,,
+Bebidas,Limonada,"Con menta y jengibre, bien fría.",2800,,,SI,Vegano,
+Bebidas,Jugo de Naranja,Exprimido al momento.,3200,3800,,SI,Promo,
+Bebidas,Té en hebras,"Negro, verde o de hierbas, ""a elección"" del cliente.","1.800",,,SI,,
+Bebidas,Licuado de frutas,"Banana, frutilla o durazno, con agua o leche.",Consultar,,,SI,,
