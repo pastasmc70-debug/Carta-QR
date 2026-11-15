@@ -23,6 +23,7 @@ Google Sheet ──(Publicar en la web, CSV)──► app.js ──► menú en 
 | `app.js` | Lee la planilla y dibuja el menú. |
 | `config.js` | **Lo único que se edita por cliente** (nombre, links, colores…). |
 | `menu.csv` | Menú de demo. Se usa solo si `sheetCsvUrl` está vacío o como último recurso. |
+| `datos.csv` | Datos del local de demo (nombre, eslogan, contacto). Se usa solo si `datosCsvUrl` está vacío. |
 | `img/` | Logo, portada y fotos del negocio (la plantilla viene vacía, solo `.gitkeep`). |
 | `herramientas/generar_qr.py` | Genera el QR estático (corrección de errores H). |
 | `herramientas/plantilla-menu.xlsx` | Planilla modelo para subir a Google Sheets (se regenera con `crear_plantilla_xlsx.py`). |
@@ -60,6 +61,24 @@ Detalles útiles:
 - **Producto agotado**: aparece atenuado pero legible, con la etiqueta *Agotado* y un solo precio tachado.
 - **Con y sin foto en la misma sección**: primero van los productos con foto (tarjetas grandes) y debajo los que no la tienen (filas con el precio a la derecha). Ojo: esto cambia el orden de la planilla dentro de la categoría; si querés un orden exacto, poné foto a todos los productos de esa categoría o a ninguno.
 
+## La hoja `Datos` (nombre del local y contacto)
+
+El dueño puede cambiar el nombre del local y los datos de contacto desde la planilla, sin tocar código. La hoja `Datos` tiene dos columnas: `campo` (no se cambia) y `valor` (lo que se edita).
+
+| campo | Qué va |
+|---|---|
+| `nombre` | Nombre del local. |
+| `eslogan` | Frase bajo el nombre. |
+| `direccion`, `horarios` | Textos del encabezado. |
+| `whatsapp` | Solo números, con código de país: `5491112345678`. |
+| `instagram`, `facebook` | Usuario o URL completa. |
+| `logo`, `portada` | Archivo de `img/`, link `https://…` o link compartido de Drive. |
+
+- Un valor **vacío** usa el de `config.js`, que queda como respaldo.
+- Se publica igual que la hoja del menú (ver checklist) y el link va en `datosCsvUrl`.
+- Si la hoja no está publicada o no carga, el menú usa `config.js` y la última versión que guardó el celular.
+- Moneda, colores y decoración siguen solo en `config.js`.
+
 ## `config.js`
 
 Los campos vacíos no muestran nada.
@@ -71,6 +90,7 @@ Los campos vacíos no muestran nada.
 | `logo` | Ruta (ej. `img/logo.png`). Vacío = se usa el nombre. |
 | `portada` | Foto del encabezado (opcional). Vacío = el encabezado usa un fondo hecho con CSS (degradado cálido de la paleta con textura y granos de café). |
 | `sheetCsvUrl` | Link CSV publicado de Google Sheets. **Vacío = lee `menu.csv` local (demo).** |
+| `datosCsvUrl` | Link CSV publicado de la hoja `Datos`. Lo que tenga valor ahí reemplaza `nombre`, `eslogan`, `direccion`, `horarios`, `whatsapp`, `instagram`, `facebook`, `logo` y `portada` de este archivo. **Vacío = lee `datos.csv` local.** |
 | `moneda` | Símbolo, ej. `$`. |
 | `whatsapp` | Solo números, con código de país: `5491112345678`. |
 | `instagram`, `facebook` | Usuario o URL completa. |
@@ -85,7 +105,8 @@ Los campos vacíos no muestran nada.
 - [ ] Crear el Google Sheet: subir `herramientas/plantilla-menu.xlsx` a Drive y abrirla con Google Sheets.
 - [ ] Publicarlo como CSV: **Archivo > Compartir > Publicar en la web**, elegir la hoja del menú y formato **CSV**.
 - [ ] Pegar ese link en `sheetCsvUrl` de `config.js`.
-- [ ] Completar el resto de `config.js` (nombre, WhatsApp, redes, dirección, horarios).
+- [ ] Repetir la publicación eligiendo la hoja **Datos** y pegar ese otro link en `datosCsvUrl`.
+- [ ] Completar la hoja **Datos** (nombre, eslogan, WhatsApp, redes, dirección, horarios) y, como respaldo, los mismos campos en `config.js`.
 - [ ] (Opcional) Subir las fotos **propias del negocio**: logo, portada y productos a `img/`, o usar links de Drive en la columna `imagen`. Sin fotos el menú se ve completo igual.
 - [ ] Activar GitHub Pages: **Settings > Pages > Deploy from a branch > `main` / root**.
 - [ ] Dominio propio: agregar un archivo `CNAME` con el dominio, apuntar el DNS a GitHub Pages y tildar **Enforce HTTPS**.

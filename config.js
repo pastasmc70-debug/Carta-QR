@@ -3,7 +3,7 @@
    Los campos vacíos ("") no muestran nada en el menú.
    ===================================================================== */
 window.CONFIG = {
-  // --- Identidad ---------------------------------------------------------
+  // --- Identidad (valores de respaldo: la hoja "Datos" los reemplaza) ------
   nombre: "Rincón Café",
   eslogan: "Buen café, mejores momentos",
   logo: "",                      // ej: "img/logo.png". Vacío = se muestra el nombre en letra script
@@ -13,6 +13,10 @@ window.CONFIG = {
   // Link CSV de Google Sheets (Archivo > Compartir > Publicar en la web > CSV).
   // Vacío = lee el menu.csv local (útil para demos).
   sheetCsvUrl: "",
+  // Link CSV de la hoja "Datos" (nombre, eslogan, dirección, horarios, redes...).
+  // Se publica igual que la del menú, eligiendo la hoja "Datos".
+  // Lo que se complete ahí pisa lo de abajo. Vacío = lee datos.csv local.
+  datosCsvUrl: "",
   moneda: "$",
 
   // --- Contacto ----------------------------------------------------------

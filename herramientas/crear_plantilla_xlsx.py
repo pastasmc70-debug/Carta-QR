@@ -27,6 +27,18 @@ EJEMPLOS = [
      "https://drive.google.com/file/d/ID_DEL_ARCHIVO/view?usp=sharing", "SI", "Vegano", "🥤"],            # imagen de Drive
 ]
 
+DATOS = [
+    ["nombre", "Rincón Café"],
+    ["eslogan", "Buen café, mejores momentos"],
+    ["direccion", "Av. San Martín 1234"],
+    ["horarios", "Lun. a Dom. 8hs - 23hs"],
+    ["whatsapp", "5491112345678"],
+    ["instagram", "rinconcafe"],
+    ["facebook", "rinconcafe"],
+    ["logo", None],
+    ["portada", None],
+]
+
 INSTRUCCIONES = [
     "CÓMO USAR LA PLANILLA",
     "1. Una fila = un producto. Fila nueva = producto nuevo.",
@@ -39,6 +51,11 @@ INSTRUCCIONES = [
     "8. disponible: SI o NO. Con NO el producto se ve atenuado con la etiqueta Agotado (no se oculta).",
     "9. etiqueta: opcional, texto corto (Nuevo, Promo, Vegano).",
     "10. icono: opcional, un emoji para la categoría (se usa el primero que encuentre). Si no hay, se elige uno automático.",
+    "",
+    "HOJA DATOS (nombre del local y contacto)",
+    "En la hoja Datos se cambia el nombre del local, el eslogan, la dirección, los horarios, el WhatsApp (solo números, con 549), Instagram y Facebook.",
+    "Solo se escribe en la columna B (valor). Si una celda queda vacía, se usa el valor que está en config.js.",
+    "logo y portada: nombre de un archivo de la carpeta img/, un link https o un link compartido de Google Drive.",
 ]
 
 
@@ -69,6 +86,23 @@ def main():
                                 error="Elegí SI o NO.")
     ws.add_data_validation(validacion)
     validacion.add("G2:G500")
+
+    datos = wb.create_sheet("Datos")
+    datos.append(["campo", "valor"])
+    for celda in datos[1]:
+        celda.font = Font(bold=True, color="F6E7CF")
+        celda.fill = PatternFill("solid", fgColor="3B2418")
+    for fila in DATOS:
+        datos.append(fila)
+    for celda in datos["A"][1:]:
+        celda.font = Font(bold=True)
+    for celda in datos["B"]:
+        celda.number_format = "@"   # texto: que el WhatsApp no se vuelva 5,49E+12
+    datos.column_dimensions["A"].width = 16
+    datos.column_dimensions["B"].width = 50
+    datos.column_dimensions["C"].width = 60
+    datos["C1"] = "No cambies la columna A. Solo escribí en la columna B."
+    datos["C1"].font = Font(italic=True, color="6D5A47")
 
     ayuda = wb.create_sheet("Instrucciones")
     for linea in INSTRUCCIONES:
